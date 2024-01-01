@@ -10,6 +10,7 @@ class showdialog extends StatelessWidget {
     return AlertDialog(
       title: const Text("Add to your list"),
       content: TextField(
+        autofocus: true,
         controller: controller,
         decoration: const InputDecoration(
           hintText: "Enter your task",
@@ -22,14 +23,14 @@ class showdialog extends StatelessWidget {
             addToList();
             Navigator.pop(context);
           },
-          child: const Text("Add"),
+          child: const Text("Add", style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),)
         ),
         TextButton(
           onPressed: () {
             Navigator.pop(context);
             controller.clear();
           },
-          child: const Text("Cancel"),
+          child: const Text("Cancel", style: TextStyle(color: Color.fromARGB(255, 0, 0, 0))),
         ),
       ],
     );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:xd_notes/pages/Homepage/homepage.dart';
 import 'package:xd_notes/pages/landingpage/showdialog.dart';
 
 class thirdPage extends StatefulWidget {
@@ -31,24 +32,31 @@ class _thirdPageState extends State<thirdPage> {
       );
     }
 
+    void handleNext() {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => homepage()),
+      );
+    }
+
     return Scaffold(
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            SizedBox(height: 20,),
             Container(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
                     "XD",
-                    style: GoogleFonts.poppins(
-                        textStyle: const TextStyle(fontSize: 100),
-                        color: Colors.white),
+                    style: GoogleFonts.qwitcherGrypen(
+                        textStyle: const TextStyle(fontSize: 100),),
                   ),
                   Text(
                     "Notes",
-                    style: GoogleFonts.poppins(
+                    style: GoogleFonts.qwitcherGrypen(
                         textStyle: const TextStyle(fontSize: 50)),
                   ),
                 ],
@@ -134,13 +142,23 @@ class _thirdPageState extends State<thirdPage> {
                 maxWidth: 360,
               ),
               margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-              padding: EdgeInsets.symmetric(vertical: 20),
+              padding: EdgeInsets.symmetric(vertical: 10),
               decoration: BoxDecoration(
                   color: Colors.black, borderRadius: BorderRadius.circular(4)),
-              child: Text(
-                "Let's get Started",
-                style: GoogleFonts.poppins(
-                    textStyle: TextStyle(color: Colors.white)),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.transparent,
+                  onPrimary: Colors.transparent,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                ),
+                onPressed: handleNext,
+                child: Text(
+                  "Let's get Started",
+                  style: GoogleFonts.poppins(
+                      textStyle: TextStyle(color: Colors.white)),
+                ),
               ),
             )
           ],

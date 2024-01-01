@@ -23,6 +23,7 @@ class firstPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+                        // SizedBox(height: 20,),
             Container(
               padding: const EdgeInsets.all(10),
               child: Column(
@@ -30,13 +31,12 @@ class firstPage extends StatelessWidget {
                 children: [
                   Text(
                     "XD",
-                    style: GoogleFonts.poppins(
-                        textStyle: const TextStyle(fontSize: 100),
-                        color: Colors.white),
+                    style: GoogleFonts.bhuTukaExpandedOne(
+                        textStyle: const TextStyle(fontSize: 100),),
                   ),
                   Text(
                     "Notes",
-                    style: GoogleFonts.poppins(
+                    style: GoogleFonts.bhuTukaExpandedOne(
                         textStyle: const TextStyle(fontSize: 50)),
                   ),
                 ],
@@ -47,17 +47,17 @@ class firstPage extends StatelessWidget {
               children: [
                 Text(
                   "Where the",
-                  style: GoogleFonts.poppins(
+                  style: GoogleFonts.bhuTukaExpandedOne(
                       textStyle: const TextStyle(fontSize: 25)),
                 ),
                 Text(
                   "Dreams",
-                  style: GoogleFonts.poppins(
+                  style: GoogleFonts.bhuTukaExpandedOne(
                       textStyle: const TextStyle(fontSize: 35)),
                 ),
                 Text(
                   "Begin",
-                  style: GoogleFonts.poppins(
+                  style: GoogleFonts.bhuTukaExpandedOne(
                       textStyle: const TextStyle(fontSize: 40)),
                 ),
               ],
@@ -68,13 +68,13 @@ class firstPage extends StatelessWidget {
           ],
         ),
       ),
-      floatingActionButton: IconButton(
-        icon: const Icon(
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(
           Icons.arrow_right_alt_rounded,
           size: 30,
-          color: Color.fromARGB(255, 255, 255, 255),
-        ),
-        color: Colors.black,
+          color: Color.fromARGB(255, 0, 0, 0),
+        ),  
+        // color: Colors.black,
         onPressed: handleClick,
       ),
     );

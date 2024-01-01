@@ -40,6 +40,7 @@ class _secondpageState extends State<secondpage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+                        SizedBox(height: 20,),
             Container(
               padding: const EdgeInsets.all(10),
               child: Column(
@@ -47,13 +48,12 @@ class _secondpageState extends State<secondpage> {
                 children: [
                   Text(
                     "XD",
-                    style: GoogleFonts.poppins(
-                        textStyle: const TextStyle(fontSize: 100),
-                        color: Colors.white),
+                    style: GoogleFonts.abrilFatface(
+                        textStyle: const TextStyle(fontSize: 100),),
                   ),
                   Text(
                     "Notes",
-                    style: GoogleFonts.poppins(
+                    style: GoogleFonts.abrilFatface(
                         textStyle: const TextStyle(fontSize: 50)),
                   ),
                 ],
@@ -64,7 +64,7 @@ class _secondpageState extends State<secondpage> {
               children: [
                 Text(
                   "Say Your Name",
-                  style: GoogleFonts.poppins(
+                  style: GoogleFonts.abrilFatface(
                       textStyle: TextStyle(
                     fontSize: 30,
                   )),
@@ -93,7 +93,7 @@ class _secondpageState extends State<secondpage> {
                       SizedBox(width: 10,),
                       Text(
                         "Your name is too small",
-                        style: GoogleFonts.poppins(
+                        style: GoogleFonts.abrilFatface(
                             textStyle: TextStyle(
                           fontSize: 10,
                           color: const Color.fromARGB(255, 255, 255, 255)
@@ -110,13 +110,13 @@ class _secondpageState extends State<secondpage> {
           ],
         ),
       ),
-      floatingActionButton: IconButton(
-        icon: const Icon(
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(
           Icons.arrow_right_alt_rounded,
           size: 30,
-          color: Color.fromARGB(255, 255, 255, 255),
+          color: Color.fromARGB(255, 0, 0, 0),
         ),
-        color: Colors.black,
+        // color: Colors.black,
         onPressed: handleClick,
       ),
     );
