@@ -17,7 +17,7 @@ class firstPage extends StatelessWidget {
     }
 
     return Scaffold(
-      backgroundColor: Theme.of(context).primaryColorDark,
+      backgroundColor: Color.fromARGB(177, 39, 241, 214),
       body: Center(
         child: Column(
           children: [
@@ -30,12 +30,12 @@ class firstPage extends StatelessWidget {
                   children: [
                     Text(
                       "XD",
-                      style: GoogleFonts.bhuTukaExpandedOne(
+                      style: GoogleFonts.agdasima(
                           textStyle: const TextStyle(fontSize: 100),),
                     ),
                     Text(
                       "Notes",
-                      style: GoogleFonts.bhuTukaExpandedOne(
+                      style: GoogleFonts.agdasima(
                           textStyle: const TextStyle(fontSize: 50)),
                     ),
                   ],
@@ -49,17 +49,17 @@ class firstPage extends StatelessWidget {
                 children: [
                   Text(
                     "Where the",
-                    style: GoogleFonts.bhuTukaExpandedOne(
+                    style: GoogleFonts.actor(
                         textStyle: const TextStyle(fontSize: 25)),
                   ),
                   Text(
                     "Dreams",
-                    style: GoogleFonts.bhuTukaExpandedOne(
+                    style: GoogleFonts.actor(
                         textStyle: const TextStyle(fontSize: 35)),
                   ),
                   Text(
                     "Begin",
-                    style: GoogleFonts.bhuTukaExpandedOne(
+                    style: GoogleFonts.actor(
                         textStyle: const TextStyle(fontSize: 40)),
                   ),
                 ],

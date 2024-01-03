@@ -9,7 +9,9 @@ class askName extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       controller: controller,
+    
       decoration: InputDecoration(
+        focusColor: Colors.black,
         hintText: "Enter Name",
       ),
       // onFieldSubmitted: handleClick(),

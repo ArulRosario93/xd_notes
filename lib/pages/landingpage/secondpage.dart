@@ -49,7 +49,7 @@ class _secondpageState extends State<secondpage> {
     }
 
     return Scaffold(
-      backgroundColor: Theme.of(context).primaryColor,
+      backgroundColor: Color.fromARGB(177, 39, 241, 214),
       body: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,

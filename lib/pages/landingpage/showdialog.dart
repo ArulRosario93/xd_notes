@@ -14,6 +14,12 @@ class showdialog extends StatelessWidget {
         controller: controller,
         decoration: const InputDecoration(
           hintText: "Enter your task",
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.black),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.black),
+          ),
           border: OutlineInputBorder(),
         ),
       ),

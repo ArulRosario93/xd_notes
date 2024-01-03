@@ -41,12 +41,14 @@ class _thirdPageState extends State<thirdPage> {
   @override
   Widget build(BuildContext context) {
     void addToList() {
-      setState(() {
-        list.add({"title": controller.value.text, "selected": false});
-      });
+      if (controller.value.text.length > 0) {
+        setState(() {
+          list.add({"title": controller.value.text, "selected": false});
+        });
 
-      boxNotes.put('notes', Notes(note: list));
-      controller.clear();
+        boxNotes.put('notes', Notes(note: list));
+        controller.clear();
+      }
     }
 
     void deletefromList(int Index) {
