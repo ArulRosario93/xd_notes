@@ -71,49 +71,60 @@ class _thirdPageState extends State<thirdPage> {
     }
 
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            SizedBox(
-              height: 20,
-            ),
-            Container(
+            Flexible(
+              flex: 3,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    "XD",
-                    style: GoogleFonts.qwitcherGrypen(
-                      textStyle: const TextStyle(fontSize: 100),
+                  FittedBox(
+                    // alignment: Alignment.center,
+                    // fit: BoxFit.fitHeight,
+                    fit: BoxFit.cover,
+                    child: Text(
+                      "xD",
+                      style: GoogleFonts.abel(
+                          textStyle: const TextStyle(fontSize: 100)),
                     ),
                   ),
-                  Text(
-                    "Notes",
-                    style: GoogleFonts.qwitcherGrypen(
-                        textStyle: const TextStyle(fontSize: 50)),
+                  FittedBox(
+                    // alignment: Alignment.center,
+                    fit: BoxFit.cover,
+                    child: Text(
+                      "Notes",
+                      style: GoogleFonts.abel(
+                          textStyle: const TextStyle(fontSize: 50)),
+                    ),
                   ),
                 ],
               ),
             ),
-            Container(
-                height: 250,
-                width: MediaQuery.of(context).size.width * 0.8,
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Text(
-                        "Create Your List",
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.poppins(
-                          textStyle: TextStyle(
-                              fontSize: 19,
-                              decoration: TextDecoration.underline),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
+            Flexible(
+              flex: 4,
+              child: Column(
+                children: [
+                  Text(
+                    "Create Your List",
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.poppins(
+                      textStyle: TextStyle(
+                          fontSize: 21,
+                          decoration: TextDecoration.underline),
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                // height: 250,
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                      
                       for (int i = 0; i < list.length; i++)
                         Container(
                           padding: EdgeInsets.symmetric(vertical: 5),
@@ -147,20 +158,26 @@ class _thirdPageState extends State<thirdPage> {
                           ),
                         ),
                     ],
-                  ),
-                )),
-            Container(
-              height: 80,
-              width: 80,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(40),
-                color: Colors.white,
-                boxShadow: [
-                  BoxShadow(
-                      color: Colors.black.withOpacity(0.2),
-                      blurRadius: 10,
-                      spreadRadius: 1)
+                  ),),
+                ),),
+                ],
+              ),
+             ),
+                Flexible(
+                  flex: 1,
+                  child: Container(
+                    // height: 80,
+                    width: 80,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.circle,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.2),
+                          blurRadius: 10,
+                          spreadRadius: 1
+                        )
                 ],
               ),
               child: IconButton(
@@ -171,15 +188,11 @@ class _thirdPageState extends State<thirdPage> {
                     size: 30,
                   ),
                   onPressed: handleClick),
-            ),
-            SizedBox(
-              height: 15,
-            ),
-            Container(
+            ),),
+            Flexible(
+              flex: 1,
+              child:Container(
               alignment: Alignment.center,
-              constraints: BoxConstraints(
-                maxWidth: 360,
-              ),
               margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               padding: EdgeInsets.symmetric(vertical: 10),
               decoration: BoxDecoration(
@@ -199,7 +212,7 @@ class _thirdPageState extends State<thirdPage> {
                       textStyle: TextStyle(color: Colors.white)),
                 ),
               ),
-            )
+            ),),
           ],
         ),
       ),

@@ -1,3 +1,6 @@
+// ignore: prefer_interpolation_to_compose_strings
+// ignore: camel_case_types
+
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -73,22 +76,22 @@ class _homepageState extends State<homepage> {
     return Scaffold(
       body: Container(
         alignment: Alignment.center,
-        padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
         child: Column(
           // mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Text(
-              "Hey, " + BoxName.get("name").note,
+               "Hey, " + BoxName.get("name").note,
               textAlign: TextAlign.right,
               style: GoogleFonts.poppins(
                   textStyle: TextStyle(color: Colors.black, fontSize: 35)),
             ),
 
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
 
@@ -98,9 +101,9 @@ class _homepageState extends State<homepage> {
                 Text(
                   "Big Day",
                   style: GoogleFonts.poppins(
-                      textStyle: TextStyle(color: Colors.black, fontSize: 20)),
+                      textStyle: const TextStyle(color: Colors.black, fontSize: 20)),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 5,
                 ),
                 Text(
@@ -112,13 +115,13 @@ class _homepageState extends State<homepage> {
               ],
             ),
 
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
 
             Expanded(
                 child: SingleChildScrollView(
-              child: Container(
+              child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,

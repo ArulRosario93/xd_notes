@@ -31,7 +31,7 @@ class _secondpageState extends State<secondpage> {
   @override
   Widget build(BuildContext context) {
     void handleClick() async {
-      if (controller.value.text.length <= 2) {
+      if (controller.value.text.length == 0) {
         setState(() {
           err = true;
         });
@@ -49,13 +49,13 @@ class _secondpageState extends State<secondpage> {
     }
 
     return Scaffold(
-      backgroundColor: Theme.of(context).primaryColorDark,
+      backgroundColor: Theme.of(context).primaryColor,
       body: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-                        SizedBox(height: 20,),
+                        SizedBox(height: 10,),
             Container(
               padding: const EdgeInsets.all(10),
               child: Column(

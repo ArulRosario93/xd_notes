@@ -20,51 +20,51 @@ class firstPage extends StatelessWidget {
       backgroundColor: Theme.of(context).primaryColorDark,
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-                        // SizedBox(height: 20,),
-            Container(
-              padding: const EdgeInsets.all(10),
-              child: Column(
+            Flexible(
+              flex: 4,
+              child: Container(
+                padding: const EdgeInsets.all(10),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "XD",
+                      style: GoogleFonts.bhuTukaExpandedOne(
+                          textStyle: const TextStyle(fontSize: 100),),
+                    ),
+                    Text(
+                      "Notes",
+                      style: GoogleFonts.bhuTukaExpandedOne(
+                          textStyle: const TextStyle(fontSize: 50)),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Flexible(
+              flex:4 ,
+              child:Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    "XD",
+                    "Where the",
                     style: GoogleFonts.bhuTukaExpandedOne(
-                        textStyle: const TextStyle(fontSize: 100),),
+                        textStyle: const TextStyle(fontSize: 25)),
                   ),
                   Text(
-                    "Notes",
+                    "Dreams",
                     style: GoogleFonts.bhuTukaExpandedOne(
-                        textStyle: const TextStyle(fontSize: 50)),
+                        textStyle: const TextStyle(fontSize: 35)),
+                  ),
+                  Text(
+                    "Begin",
+                    style: GoogleFonts.bhuTukaExpandedOne(
+                        textStyle: const TextStyle(fontSize: 40)),
                   ),
                 ],
               ),
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  "Where the",
-                  style: GoogleFonts.bhuTukaExpandedOne(
-                      textStyle: const TextStyle(fontSize: 25)),
-                ),
-                Text(
-                  "Dreams",
-                  style: GoogleFonts.bhuTukaExpandedOne(
-                      textStyle: const TextStyle(fontSize: 35)),
-                ),
-                Text(
-                  "Begin",
-                  style: GoogleFonts.bhuTukaExpandedOne(
-                      textStyle: const TextStyle(fontSize: 40)),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 48,
-            )
           ],
         ),
       ),
