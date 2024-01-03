@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:xd_notes/notes.dart';
+import 'package:xd_notes/pages/Homepage/name.dart';
 import 'package:xd_notes/pages/landingpage/askname.dart';
 import 'package:xd_notes/pages/landingpage/thirdpage.dart';
 
@@ -11,17 +14,31 @@ class secondpage extends StatefulWidget {
 }
 
 class _secondpageState extends State<secondpage> {
+  
   TextEditingController controller = TextEditingController();
   bool err = false;
 
+  void openhive() async {
+    BoxName = await Hive.openBox<Name>('nameBox');
+  }
+
+  @override
+  void initState() {
+    openhive();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    void handleClick() {
+    void handleClick() async {
       if (controller.value.text.length <= 2) {
         setState(() {
           err = true;
         });
       }else{
+
+        await BoxName.put('name', Name(note: controller.value.text));
+
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -29,8 +46,6 @@ class _secondpageState extends State<secondpage> {
           )
         );
       }
-      // print(controller.value.text.length);
-
     }
 
     return Scaffold(

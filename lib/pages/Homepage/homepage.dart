@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:xd_notes/notes.dart';
+import 'package:xd_notes/pages/Homepage/name.dart';
+import 'package:xd_notes/pages/Homepage/notes.dart';
 import 'package:xd_notes/pages/landingpage/showdialog.dart';
 
 class homepage extends StatefulWidget {
@@ -11,23 +15,40 @@ class homepage extends StatefulWidget {
 }
 
 class _homepageState extends State<homepage> {
-  List<String> list = ["Wake up b4 4", "Drink water", "Do exercise"];
+  List<Map<String, Object>> list = [];
+  DateTime dateToday = DateTime.now();
   TextEditingController controller = TextEditingController();
+
+  void openhive() async {
+    BoxName = await Hive.openBox<Name>('nameBox');
+    boxNotes = await Hive.openBox<Notes>('notesBox');
+
+    setState(() {
+      list = boxNotes.get('notes')!.note;
+    });
+  }
+
+  @override
+  void initState() {
+    openhive();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-
     void deletedtask(int index) {
       setState(() {
         list.removeAt(index);
       });
+
+      boxNotes.put('notes', Notes(note: list));
     }
 
     void addToList() {
       setState(() {
-        list.add(controller.value.text);
+        list.add({"title": controller.value.text, "selected": false});
       });
-      print(controller.value.text);
+      boxNotes.put('notes', Notes(note: list));
       controller.clear();
     }
 
@@ -37,6 +58,16 @@ class _homepageState extends State<homepage> {
         builder: (context) =>
             showdialog(controller: controller, addToList: addToList),
       );
+    }
+
+    void taskTapped(int Index) {
+      setState(() {
+        list[Index]["selected"] = (list[Index]["selected"] != false
+            ? false
+            : true);
+      });
+
+      boxNotes.put('notes', Notes(note: list));
     }
 
     return Scaffold(
@@ -51,7 +82,7 @@ class _homepageState extends State<homepage> {
               height: 20,
             ),
             Text(
-              "Hey, Ro",
+              "Hey, " + BoxName.get("name").note,
               textAlign: TextAlign.right,
               style: GoogleFonts.poppins(
                   textStyle: TextStyle(color: Colors.black, fontSize: 35)),
@@ -73,7 +104,7 @@ class _homepageState extends State<homepage> {
                   width: 5,
                 ),
                 Text(
-                  "29/11",
+                  dateToday.day.toString() + "/" + dateToday.month.toString(),
                   textAlign: TextAlign.center,
                   style: GoogleFonts.poppins(
                       textStyle: TextStyle(color: Colors.black, fontSize: 20)),
@@ -118,21 +149,24 @@ class _homepageState extends State<homepage> {
                                 borderRadius: BorderRadius.circular(4)),
                             child: Row(
                               children: [
-                                Text(
-                                  (i + 1).toString() + ".",
-                                  style: GoogleFonts.poppins(
-                                      textStyle: TextStyle(
-                                          fontSize: 16, color: Colors.white)),
-                                ),
+                                IconButton(
+                                    onPressed: () => taskTapped(i),
+                                    icon: Icon(
+                                      list[i]["selected"] == true
+                                          ? Icons.check_circle
+                                          : Icons.circle,
+                                      color: Colors.white,
+                                    )),
                                 SizedBox(
                                   width: 10,
                                 ),
                                 Expanded(
                                   child: Text(
-                                    list[i],
+                                    list[i]["title"].toString(),
                                     overflow: TextOverflow.ellipsis,
                                     style: GoogleFonts.poppins(
                                         textStyle: TextStyle(
+                                          decoration: list[i]["selected"] == true? TextDecoration.lineThrough: TextDecoration.none,
                                             fontSize: 16, color: Colors.white)),
                                   ),
                                 ),
@@ -141,17 +175,30 @@ class _homepageState extends State<homepage> {
                           ),
                         ),
                       ),
-
-                      list.length < 4? Container(
-                        alignment: Alignment.center,
-                          child: Column(
-                            children: [
-                              SizedBox(height: 60,),
-                              Text("Lot More", style: GoogleFonts.bowlbyOne(textStyle: TextStyle(fontSize: 25, color: Colors.black)),),
-                              Text("To Add On Ro", style: GoogleFonts.bowlbyOne(textStyle: TextStyle(fontSize: 25, color: Colors.black)),),
-                            ],
-                          ),
-                        ): Container(),
+                    list.length < 4
+                        ? Container(
+                            alignment: Alignment.center,
+                            child: Column(
+                              children: [
+                                SizedBox(
+                                  height: 60,
+                                ),
+                                Text(
+                                  "Lot More",
+                                  style: GoogleFonts.bowlbyOne(
+                                      textStyle: TextStyle(
+                                          fontSize: 25, color: Colors.black)),
+                                ),
+                                Text(
+                                  "To Add On Ro",
+                                  style: GoogleFonts.bowlbyOne(
+                                      textStyle: TextStyle(
+                                          fontSize: 25, color: Colors.black)),
+                                ),
+                              ],
+                            ),
+                          )
+                        : Container(),
                   ],
                 ),
               ),
@@ -186,7 +233,7 @@ class _homepageState extends State<homepage> {
                 primary: Colors.transparent,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50))),
-            onPressed:() => handleClick(),
+            onPressed: () => handleClick(),
             child: Icon(
               Icons.add,
               color: Colors.black,

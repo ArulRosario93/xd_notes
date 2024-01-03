@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:xd_notes/notes.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:xd_notes/pages/Homepage/homepage.dart';
+import 'package:xd_notes/pages/Homepage/name.dart';
+import 'package:xd_notes/pages/Homepage/notes.dart';
 import 'package:xd_notes/pages/landingpage/showdialog.dart';
 
 class thirdPage extends StatefulWidget {
@@ -11,17 +15,46 @@ class thirdPage extends StatefulWidget {
 }
 
 class _thirdPageState extends State<thirdPage> {
-  List<String> list = ["Wake up b4 4", "Drink water", "Do exercise"];
+  List<Map<String, Object>> list = [
+    {"title": "Wake up b4 6", "selected": false}
+  ];
   TextEditingController controller = TextEditingController();
+
+  void openhive() async {
+    boxNotes = await Hive.openBox<Notes>('notesBox');
+
+    if (boxNotes.get('notes')!.note.length != 0) {
+      setState(() {
+        list = boxNotes.get('notes')!.note;
+      });
+    }else{
+      boxNotes.put('notes', Notes(note: list));
+    }
+  }
+
+  @override
+  void initState() {
+    openhive();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     void addToList() {
       setState(() {
-        list.add(controller.value.text);
+        list.add({"title": controller.value.text, "selected": false});
       });
-      print(controller.value.text);
+
+      boxNotes.put('notes', Notes(note: list));
       controller.clear();
+    }
+
+    void deletefromList(int Index) {
+      setState(() {
+        list.removeAt(Index);
+      });
+
+      boxNotes.put('notes', Notes(note: list));
     }
 
     void handleClick() {
@@ -33,10 +66,8 @@ class _thirdPageState extends State<thirdPage> {
     }
 
     void handleNext() {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => homepage()),
-      );
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => homepage()));
     }
 
     return Scaffold(
@@ -44,7 +75,9 @@ class _thirdPageState extends State<thirdPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            SizedBox(height: 20,),
+            SizedBox(
+              height: 20,
+            ),
             Container(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -52,7 +85,8 @@ class _thirdPageState extends State<thirdPage> {
                   Text(
                     "XD",
                     style: GoogleFonts.qwitcherGrypen(
-                        textStyle: const TextStyle(fontSize: 100),),
+                      textStyle: const TextStyle(fontSize: 100),
+                    ),
                   ),
                   Text(
                     "Notes",
@@ -98,12 +132,17 @@ class _thirdPageState extends State<thirdPage> {
                               ),
                               Expanded(
                                 child: Text(
-                                  list[i],
+                                  list[i]['title'].toString(),
                                   overflow: TextOverflow.ellipsis,
                                   style: GoogleFonts.poppins(
                                       textStyle: TextStyle(fontSize: 16)),
                                 ),
                               ),
+                              IconButton(
+                                  onPressed: () {
+                                    deletefromList(i);
+                                  },
+                                  icon: Icon(Icons.delete))
                             ],
                           ),
                         ),
